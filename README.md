@@ -1,102 +1,80 @@
+<div align="center">
 
-# ¿Cómo realizar la limpieza y análisis de los datos?
+![Machine Learning](https://img.shields.io/badge/MACHINE_LEARNING-C62828?style=for-the-badge)
 
-## Descripción 
+# Machine learning sobre la flota pesquera española
 
-En este proyecto analizamos un conjunto de datos técnico-administrativos de la flota pesquera española desde 1987 hasta 2025, utilizando identificadores únicos para garantizar la trazabilidad de cada buque. El objetivo es estudiar la evolución histórica, estructura y distribución geográfica de la flota, identificando patrones en características como tamaño, potencia, antigüedad y modalidad de pesca, para apoyar la toma de decisiones en gestión, sostenibilidad y modernización del sector pesquero.
+Limpieza, análisis exploratorio, clasificación y clustering del registro de la flota pesquera española entre 1987 y 2025.
 
-## Estructura del Proyecto
-- **./**
-  - `README.md`: Archivo de documentación del proyecto.
-  - `requirements.txt`: Lista de dependencias necesarias para la ejecución.
-  - `LICENSE.txt`: Licencia bajo la que se distribuye el dataset generado.
+![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white) ![pandas](https://img.shields.io/badge/pandas-150458?style=flat-square&logo=pandas&logoColor=white) ![scikit-learn](https://img.shields.io/badge/scikit--learn-F7931E?style=flat-square&logo=scikitlearn&logoColor=white) ![XGBoost](https://img.shields.io/badge/XGBoost-189FDD?style=flat-square) ![TensorFlow · Keras](https://img.shields.io/badge/TensorFlow_%C2%B7_Keras-FF6F00?style=flat-square&logo=tensorflow&logoColor=white) ![Jupyter](https://img.shields.io/badge/Jupyter-F37626?style=flat-square&logo=jupyter&logoColor=white)
 
-- **./data/**: Contiene los datos generados en la [PR1](https://github.com/JulioUQ/WebScrapping-con-Selenium-y-BeautifulSoup---Registro-General-de-la-Flota-Pesquera/tree/main/4.%20Solucion/data), y los limpios de la [PR2](https://github.com/JulioUQ/La-limpieza-y-analisis-de-datos-con-python-y-MachineLearning/tree/main/data).
-  - `datos_buques_ESP.csv`: Archivo CSV con los datos extraídos del registro europeo.
-  - `data_clean_v2`: Archivo CSV con los datos limpios y listos para el análisis.
-    
-- **./memoria/**: Informes de la PR2.
-  - `PR2_Ubeda_Quesada_Julio-Zamora_Vera_Lucas.pdf`: Documento de la memoria del proyecto.
+<img src="figures/pca_clusters.png" alt="Proyección PCA de los grupos de buques obtenidos con K-means" width="100%" />
 
-- **./figures/**: Gráficos generados.
+<sub>Grupos de buques según sus características técnicas (proyección PCA).</sub>
 
-- **./output/**: Archivos resultantes.
-  - `modelo_supervisado.pkl`: Archivo pkl del modelo.
-  - `modelo_no_supervisado.pkl`: Archivo pkl del modelo.
-  - `EstadisticasDescriptivas.cvs`: Dataset descriptivo de las variables.
-  - `resultados_cluster`: Dataset con clusters asignados a las embarcaciones.
+</div>
 
-- **./src/**: Código fuente.
-  - `limpieza-datos_V2.ipynb`: Jupyter notebook de la limpieza y análisis de los datos.
-  - `Modelado.ipynb`: Jupyter notebook con el proceso de modelado y contraste de hipótesis
-    
-## Pasos seguidos en la limpieza:
+---
 
--  Preparación y limpieza inicial de los datos
-    -  Revisión de duplicados
-    -  Identificación de caracteres especiales, valores vacíos y/o nulos
-    -  Simplificación del nombre de las columnas
-    -  Corrección de errores de tipo de dato (1)
-    -  Corrección de errores de tipo de dato (2)
--  Transformación estructural del dataset
-    - Descomposicion de columnas
-        -  ‘estado’ en dos: ‘estado_rgfp’ y ‘fc_estado’
-        -  ‘puerto_base’ en cuatro: ‘codigopostal’, ‘puerto’, ‘provincia’ y ‘comunidad atutonoma’
-    - Estandarización de categorías
--  Tratamiento de valores anómalos y calidad de datos
-    -  Identificación y gestión de valores extremos
-        - Imputación de los valores 0 e ilógicos
-        - Detección de outliers
-    -  Eliminación de columnas no relevantes
-- Enriquecimiento y análisis exploratorio inicial
-    - Creación de la variable ‘edad_buque’
-        - Distribución de los buques por su edad
-    - Evolución temporal de la eslora, arqueo, potencia y material del cascco de los buques
-    - Distribución en las columnas numéricas
-    - Correlaciones
+## Descripción general
 
-## Pasos seguidos en análisis:
+Analiza los datos técnico-administrativos de la flota pesquera española, identificados por buque, para estudiar su evolución, estructura y reparto geográfico. Parte del conjunto obtenido en [datos-web-scraping-flota](https://github.com/JulioUQ/datos-web-scraping-flota) y sus resultados alimentan el [dashboard de la flota](https://github.com/JulioUQ/app-dashboard-flota-pesquera).
 
-- Modelo supervisado (clasificación)
-    - Normalización de las variables numéricas
-    - Estandarizado de variables numéricas
-    - Codificación de variables categóricas
-    - Eliminación de identificadores y columnas no relevantes
-    - Entrenamiento de 4 modelos base
-    - Optimización del mejor modelo
-    - Diagnosis del modelo
-    - Modelado redes neuronales de capas densas (deep learning)
-    - Comparativa de modelos
-    - Representación de resultados y errores
-  
-- Modelo no supervisado (clustering)
-    - Eliminación de columnas no relevantes
-    - Estandarizado de variables numéricas
-    - Codificación de variables categóricas
-    - Generación de clusters (KNN)
-    - Diagnosis del modelo
-    - Representación de resultados
+## Funcionalidades
 
-- Contraste de hipótesis:
-    - Comunidad autónoma vs arte de pesca
-    - Eslora vs arte de pesca
+- **Limpieza:** duplicados, valores vacíos, tipos de dato, separación de columnas compuestas (estado, puerto base) y estandarización de categorías.
+- **Calidad de datos:** imputación de ceros y valores ilógicos y detección de valores extremos.
+- **Exploración:** edad de los buques, evolución de eslora, arqueo, potencia y material del casco, distribuciones y correlaciones.
+- **Clasificación** del arte de pesca con modelos de ensemble (Random Forest, XGBoost, CatBoost) y una red neuronal densa.
+- **Clustering** de la flota con K-means.
+- **Contrastes de hipótesis:** comunidad autónoma frente a arte de pesca, y eslora frente a arte de pesca.
 
+## Tecnologías y herramientas
 
-## Principales resultados y conclusiones
+| Ámbito | Herramientas |
+| --- | --- |
+| Datos | pandas, NumPy |
+| Modelos | scikit-learn, XGBoost, CatBoost, TensorFlow/Keras |
+| Visualización | matplotlib, seaborn |
 
-1. Se observa una modernización de la flota pesquera española en los ultimos 10-15 años, con la creación de buques nuevos con mayor tamaño y potencia, así como incorporaciones recientes a la flota. Sin embargo, muchos buques presentan una edad mayor a 30 años de servicio resaltando el envejecimiento de la flota.
+## Estructura del proyecto
 
-2. Las variables eslora, arqueo y potencia presentan distribuciones sesgadas a la derecha: la mayoría son buques pequeños, pero hay algunos casos extremos.  Esto resalta la importancia de los buques de pequeña eslora en relación al tamaño de la flota pesquera española.
+```text
+.
+├── data/       # Datos extraídos y datos limpios
+├── src/        # limpieza-datos_V2.ipynb y Modelado.ipynb
+├── figures/    # Gráficos generados
+├── output/     # Modelos (.pkl), estadísticas y clusters asignados
+├── memoria/    # Memoria del proyecto (PDF)
+└── requirements.txt
+```
 
-3. Las variables eslora, arqueo y potencia están relacionadas de forma coherente, validando tanto los datos como la imputación.
+## Instalación y uso
 
-4. El tipo de pesca tiene dependencia de la comunidad autónoma en la que está registrado el buque.
+```bash
+pip install -r requirements.txt
+jupyter lab src/
+```
 
-5. El tamaño del buque está relacionado con el tipo de pesca que realiza.
+Ejecuta primero `limpieza-datos_V2.ipynb` y después `Modelado.ipynb`.
 
-6. El modelo supervisado logra clasificar el buque según si tipo de arte de pesca con una sensibilidad media del 71% y un f1-score de 86%.
+## Resultados
 
-7. El modelo no supervisado divide la flota según sus características técnicas en 11 grupos diferenciados con un Silhouette Score de 0.4, habiendo cierto solapamiento en los grupos de buques más pequeños pero con buena diferenciación de los buques medianos y grandes.
+- Modernización de la flota en los últimos 10–15 años, con buques nuevos más grandes y potentes, junto a una parte importante de buques con más de 30 años.
+- Eslora, arqueo y potencia con distribuciones sesgadas a la derecha y relacionadas entre sí, lo que valida los datos y la imputación.
+- El arte de pesca depende de la comunidad autónoma y del tamaño del buque.
+- Según la memoria, el clasificador alcanza una sensibilidad media del 71 % y un F1 de 0,86; el clustering separa 11 grupos con un coeficiente de silueta de 0,4.
+- [Caso de estudio en el portfolio](https://juliouq.github.io/Portfolio-Web---JulioUQ/es/casos/flota-pesquera/).
 
+## Aspectos técnicos destacados
 
+- Pipeline completo, desde los datos extraídos hasta los modelos serializados.
+- Proyecto en equipo con Lucas Zamora Vera.
 
+## Autor
+
+**Julio Úbeda Quesada** · Data Scientist
+
+[![Portfolio](https://img.shields.io/badge/Portfolio-0B2545?style=flat-square&logo=astro&logoColor=white)](https://juliouq.github.io/Portfolio-Web---JulioUQ/es/) [![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=flat-square)](https://www.linkedin.com/in/juliouq/) [![GitHub](https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=github&logoColor=white)](https://github.com/JulioUQ)
+
+<sub>Proyecto realizado en el Máster Universitario en Ciencia de Datos. Licencia: GPL-3.0 (ver LICENSE).</sub>
