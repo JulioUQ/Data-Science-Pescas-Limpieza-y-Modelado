@@ -1,17 +1,30 @@
+# Análisis · Limpieza y modelado de datos de la flota pesquera
 
-# ¿Cómo realizar la limpieza y análisis de los datos?
+Proyecto académico que limpia registros de buques y aplica modelos supervisados y no supervisados para caracterizar la flota.
 
-## Descripción 
+## Tecnologías
+
+Python, Jupyter y aprendizaje automático
+
+## Explorar el repositorio
+
+- [`src`](./src)
+- [`memoria`](./memoria)
+- [`output`](./output)
+
+## Documentación
+
+#### Descripción 
 
 En este proyecto analizamos un conjunto de datos técnico-administrativos de la flota pesquera española desde 1987 hasta 2025, utilizando identificadores únicos para garantizar la trazabilidad de cada buque. El objetivo es estudiar la evolución histórica, estructura y distribución geográfica de la flota, identificando patrones en características como tamaño, potencia, antigüedad y modalidad de pesca, para apoyar la toma de decisiones en gestión, sostenibilidad y modernización del sector pesquero.
 
-## Estructura del Proyecto
+#### Estructura del Proyecto
 - **./**
   - `README.md`: Archivo de documentación del proyecto.
   - `requirements.txt`: Lista de dependencias necesarias para la ejecución.
   - `LICENSE.txt`: Licencia bajo la que se distribuye el dataset generado.
 
-- **./data/**: Contiene los datos generados en la [PR1](https://github.com/JulioUQ/WebScrapping-con-Selenium-y-BeautifulSoup---Registro-General-de-la-Flota-Pesquera/tree/main/4.%20Solucion/data), y los limpios de la [PR2](https://github.com/JulioUQ/La-limpieza-y-analisis-de-datos-con-python-y-MachineLearning/tree/main/data).
+- **./data/**: Contiene los datos generados en la [PR1](https://github.com/JulioUQ/WebScrapping-con-Selenium-y-BeautifulSoup/tree/main/4.%20Solucion/data), y los limpios de la [PR2](./data).
   - `datos_buques_ESP.csv`: Archivo CSV con los datos extraídos del registro europeo.
   - `data_clean_v2`: Archivo CSV con los datos limpios y listos para el análisis.
     
@@ -30,7 +43,7 @@ En este proyecto analizamos un conjunto de datos técnico-administrativos de la 
   - `limpieza-datos_V2.ipynb`: Jupyter notebook de la limpieza y análisis de los datos.
   - `Modelado.ipynb`: Jupyter notebook con el proceso de modelado y contraste de hipótesis
     
-## Pasos seguidos en la limpieza:
+#### Pasos seguidos en la limpieza:
 
 -  Preparación y limpieza inicial de los datos
     -  Revisión de duplicados
@@ -55,7 +68,7 @@ En este proyecto analizamos un conjunto de datos técnico-administrativos de la 
     - Distribución en las columnas numéricas
     - Correlaciones
 
-## Pasos seguidos en análisis:
+#### Pasos seguidos en análisis:
 
 - Modelo supervisado (clasificación)
     - Normalización de las variables numéricas
@@ -82,7 +95,7 @@ En este proyecto analizamos un conjunto de datos técnico-administrativos de la 
     - Eslora vs arte de pesca
 
 
-## Principales resultados y conclusiones
+#### Principales resultados y conclusiones
 
 1. Se observa una modernización de la flota pesquera española en los ultimos 10-15 años, con la creación de buques nuevos con mayor tamaño y potencia, así como incorporaciones recientes a la flota. Sin embargo, muchos buques presentan una edad mayor a 30 años de servicio resaltando el envejecimiento de la flota.
 
@@ -97,6 +110,3 @@ En este proyecto analizamos un conjunto de datos técnico-administrativos de la 
 6. El modelo supervisado logra clasificar el buque según si tipo de arte de pesca con una sensibilidad media del 71% y un f1-score de 86%.
 
 7. El modelo no supervisado divide la flota según sus características técnicas en 11 grupos diferenciados con un Silhouette Score de 0.4, habiendo cierto solapamiento en los grupos de buques más pequeños pero con buena diferenciación de los buques medianos y grandes.
-
-
-
